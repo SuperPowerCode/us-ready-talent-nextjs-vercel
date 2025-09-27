@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -60,10 +62,11 @@ export default function LandingPage() {
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const onSubmit = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // NOTE: wire this to your backend or a service like Formspree/Resend.
     setSubmitted(true);
   };
 
